@@ -10,6 +10,7 @@ body {
   background-color: #000033;
   color: #ffccff;
   font-family: 'IBM Plex Mono', monospace;
+  font-size: large;
 }
 button {
   background-color:#cc33ff;
@@ -28,8 +29,9 @@ button {
 button:hover {
   background-color: #ff00ff;
   cursor: pointer;
-
+  border: none;
 }
+
 .introBlock {
   width: 80%;
   height: 300px;
@@ -72,7 +74,13 @@ ul {
   list-style: none;
 }
 
-
+li {
+  display: block;
+} 
+.answerContent {
+  display: inline-block;
+  margin-left: 20px;
+}
 
 .initialsBlock {
   width: 80%;
@@ -80,6 +88,8 @@ ul {
   margin: 40px auto;
   border-radius: 20px;
   border: solid 4px #cc33ff;
+  text-align: center;
+  padding-top: 40px;
 }
 
 .hiScoreBlock {
