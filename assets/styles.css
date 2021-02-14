@@ -1,0 +1,92 @@
+/* font-family: 'IBM Plex Mono', monospace;
+raisinBlack = 1D1E2C
+blackCoral = 59656F
+glossyGrape= AC9FBB
+thistle = DDBDD5
+lavenderBlush = F7EBEC
+chinese violet = 775C84 */
+
+body {
+  background-color: #000033;
+  color: #ffccff;
+  font-family: 'IBM Plex Mono', monospace;
+}
+button {
+  background-color:#cc33ff;
+  color: #ffccff;
+  font-weight: bolder;
+  height: 50px;
+  width: 10%;
+  border-radius: 10px;
+  text-decoration: none;
+  border: 0;
+  text-align:center;
+  margin: 5px 4px;
+ 
+}
+
+button:hover {
+  background-color: #ff00ff;
+  cursor: pointer;
+
+}
+.introBlock {
+  width: 80%;
+  height: 300px;
+  margin: 40px auto;
+  border-radius: 20px;
+  text-align: center;
+  padding-top: 30px;
+  border: solid 4px #cc33ff
+}
+
+.timerBlock {
+  width: 40%;
+  height: 30px;
+  border-radius: 20px;
+  margin: 40px auto;
+  text-align: center;
+  border: solid 4px #cc33ff;
+  padding-top: 5px;
+
+}
+
+.questionBlock {
+  width: 80%;
+  height: 100px;
+  margin: 40px auto;
+  border-radius: 20px;
+  border: solid 4px #cc33ff; 
+  text-align: center;
+  padding-top: 10px;
+}
+.answerBlock {
+  width: 80%;
+  height: 300px;
+  margin: 20px auto;
+  border-radius: 20px;
+  border: solid 4px #cc33ff; 
+  }
+
+ul {
+  list-style: none;
+}
+
+
+
+.initialsBlock {
+  width: 80%;
+  height: 100px;
+  margin: 40px auto;
+  border-radius: 20px;
+  border: solid 4px #cc33ff;
+}
+
+.hiScoreBlock {
+  width: 50%;
+  height: 400px;
+  margin: 20px auto;
+  border-radius: 20px;
+  border: solid 4px #cc33ff;
+}
+
