@@ -1,14 +1,7 @@
 //create variables secondsLeft, questionArray, and score.
-var secondsLeft = 20;
+var secondsLeft = 1000;
 var playerScore = 0;
 var hiScores = [];
-//create an array of questions
-//var questionArray = [problem1, problem2, problem3, problem4];
-
-
-
-
-
 
 // handle on intro block, start button
 var body = document.body;
@@ -87,9 +80,24 @@ answer4Text.className = 'answerContent';
 var initialsBlock = document.createElement('div');
 initialsBlock.className = 'initialsBlock';
 
+var initialsText = document.createElement('span');
+initialsText.className = 'initialsText';
+
+var initialsForm = document.createElement('form');
+initialsForm.className = 'initialsForm';
+initialsForm.setAttribute('method', 'POST');
+
+var initialsInput = document.createElement('input');
+initialsInput.setAttribute('type', 'text');
+initialsInput.id = 'initialsInput';
+
 //handle create hiScores block
 var hiScoreBlock = document.createElement('div');
 hiScoreBlock.className = 'hiScoreBlock';
+var hiScoreList = document.createElement('ul');
+hiScoreList.className = 'hiScoreList';
+
+
 
 
 
@@ -158,6 +166,35 @@ function countDown() {
 //function is called when secondsLeft === 0
 //function is called if all questions are answered.
 //function displays score and has an form for initials that saves to local storage.
+function init() {
+  var storedHiScores = JSON.parse(localStorage.getItem('hiScores'));
+  if (storedHiScores !== null) {
+    hiScores = storedHiScores;
+  }
+  renderHiScore();
+}
+
+function storeScores() {
+  localStorage.setItem('hiScores', JSON.stringify(hiScores));
+}
+
+initialsForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+  var initialsInputText = initialsInput.value.trim();
+
+  if (initialsInputText === '') {
+    return;
+  }
+
+
+  hiScores.push(initialsInputText);
+  console.log(hiScores);
+  initialsInput.value = '';
+  storeScores();
+  renderHiScore();
+}
+
+);
 //function displays a list of high scores
 //user has the option to clear high scores.
 
@@ -167,11 +204,57 @@ function countDown() {
 function endGame() {
 
   body.appendChild(initialsBlock);
-  initialsBlock.textContent = 'You scored ' + playerScore + ' out of 4. Please enter your initials';
+  initialsBlock.appendChild(initialsText);
+  initialsText.textContent = 'You scored ' + playerScore + ' out of 4. Please enter your initials';
+  initialsBlock.appendChild(initialsForm);
+  initialsForm.appendChild(initialsInput);
+
   body.appendChild(hiScoreBlock);
+  hiScoreBlock.appendChild(hiScoreList);
+
   body.removeChild(timerBlock);
   body.removeChild(questionBlock);
   body.removeChild(answerBlock);
+
+  renderHiScore();
+}
+
+function antiClick2() {
+  answer1Button.removeEventListener('click', answerCorrect);
+  answer1Button.removeEventListener('click', answerWrong);
+  // answer2Button.removeEventListener('click', answerCorrect);
+  
+  answer2Button.removeEventListener('click', answerWrong);
+  // answer3Button.removeEventListener('click', answerCorrect);
+  answer3Button.removeEventListener('click', answerWrong);
+  // answer4Button.removeEventListener('click', answerCorrect);
+  answer4Button.removeEventListener('click', answerWrong);
+}
+
+function antiClick3() {
+  // answer1Button.removeEventListener('click', answerCorrect);
+  answer1Button.removeEventListener('click', answerWrong);
+  // answer2Button.removeEventListener('click', answerCorrect);
+  
+  answer2Button.removeEventListener('click', answerWrong);
+  answer3Button.removeEventListener('click', answerCorrect);
+  answer3Button.removeEventListener('click', answerWrong);
+  // answer4Button.removeEventListener('click', answerCorrect);
+  answer4Button.removeEventListener('click', answerWrong);
+}
+
+function antiClick4() {
+  // answer1Button.removeEventListener('click', answerCorrect);
+  answer1Button.removeEventListener('click', answerWrong);
+
+  // answer2Button.removeEventListener('click', answerCorrect);
+  answer2Button.removeEventListener('click', answerWrong);
+
+  // answer3Button.removeEventListener('click', answerCorrect);
+  answer3Button.removeEventListener('click', answerWrong);
+
+answer4Button.removeEventListener('click', answerCorrect);
+  answer4Button.removeEventListener('click', answerWrong);
 }
 
 function problem1() {
@@ -181,13 +264,16 @@ function problem1() {
   answer1Button.addEventListener('click', answerCorrect);
   answer1Button.addEventListener('click', problem2);
 
+
   answer2Text.textContent = '<shoulders>';
   answer2Button.addEventListener('click', answerWrong);
   answer2Button.addEventListener('click', problem2);
 
+
   answer3Text.textContent = '<knees>';
   answer3Button.addEventListener('click', answerWrong);
   answer3Button.addEventListener('click', problem2);
+
 
   answer4Text.textContent = '<toes>';
   answer4Button.addEventListener('click', answerWrong);
@@ -196,19 +282,23 @@ function problem1() {
 }
 
 function problem2() {
+  antiClick2();
   questionBlock.textContent = 'What is an example of an array';
 
   answer1Text.textContent = 'var array = ABCDEFG';
   answer1Button.addEventListener('click', answerWrong);
   answer1Button.addEventListener('click', problem3);
 
+
   answer2Text.textContent = 'var numbers = $*1 *2 *3 *4 *5 *6$';
   answer2Button.addEventListener('click', answerWrong);
   answer2Button.addEventListener('click', problem3);
 
+
   answer3Text.textContent = 'var cars = ["Jaguar", "Ferrari", "Toyota", "Lexus"]';
   answer3Button.addEventListener('click', answerCorrect);
   answer3Button.addEventListener('click', problem3);
+
 
   answer4Text.textContent = 'array = function()';
   answer4Button.addEventListener('click', answerWrong);
@@ -217,19 +307,23 @@ function problem2() {
 }
 
 function problem3() {
+  antiClick3();
   questionBlock.textContent = 'Who invented the internet';
 
   answer1Text.textContent = 'Darryl J. Internet';
   answer1Button.addEventListener('click', answerWrong);
   answer1Button.addEventListener('click', problem4);
 
+
   answer2Text.textContent = 'Vinton Cerf & Robert Kahn';
   answer2Button.addEventListener('click', answerWrong);
   answer2Button.addEventListener('click', problem4);
 
+
   answer3Text.textContent = 'Tim Berners-Lee';
   answer3Button.addEventListener('click', answerWrong);
   answer3Button.addEventListener('click', problem4);
+
 
   answer4Text.textContent = 'Al Gore';
   answer4Button.addEventListener('click', answerCorrect);
@@ -238,6 +332,7 @@ function problem3() {
 }
 
 function problem4() {
+  antiClick4();
   questionBlock.textContent = 'Which of the following is the most specific CSS selector';
 
   answer1Text.textContent = 'tag {}';
@@ -260,15 +355,31 @@ function problem4() {
 
 function answerWrong() {
   secondsLeft -= 5;
+  console.log(playerScore);
 }
 
 function answerCorrect() {
-  secondsLeft += 5;
-
-
+  playerScore++;
+  console.log(playerScore);
 }
 
+function renderHiScore() {
+  hiScoreList.innerHTML = '';
+  for (var i = 0; i < hiScores.length; i++) {
+    var hiScore = hiScores[i];
+    var scoreLi = document.createElement('li');
+    scoreLi.textContent = hiScore + ' ' + playerScore;
+    scoreLi.setAttribute('data-index', i);
+    hiScoreList.appendChild(scoreLi);
+  }
 
+  if (hiScores.length > 9) {
+    hiScores = hiScores.pop();
+
+  }
+}
+
+init();
 /*
 function chooseQuestion() {
   if (questionArray.length < 1) {

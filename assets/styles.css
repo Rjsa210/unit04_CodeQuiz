@@ -77,6 +77,18 @@ ul {
 li {
   display: block;
 } 
+
+.hiScoreList {
+  justify-content: center;
+  padding-inline-start: 0;
+}
+.hiScoreList li {
+  border: solid 2px #cc33ff;
+  border-radius: 20px;
+  text-align: center;
+  margin: 5px 20px;
+  display:list-item;
+}
 .answerContent {
   display: inline-block;
   margin-left: 20px;
@@ -100,3 +112,12 @@ li {
   border: solid 4px #cc33ff;
 }
 
+input {
+  margin-top: 20px;
+  background-color: #ff00ff;
+  color: #000033;
+  font-weight:bold;
+  border-radius:20px;
+  border: none;
+  text-align:center;
+}
