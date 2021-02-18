@@ -1,5 +1,5 @@
 //create variables secondsLeft, questionArray, and score.
-var secondsLeft = 1000;
+var secondsLeft = 50;
 var playerScore = 0;
 var hiScores = [];
 
